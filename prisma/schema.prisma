@@ -16,9 +16,4 @@ model HelloWorld {
   id Int @id @default(autoincrement())
   field1 String
   field2 String?
-  Foreignfield String[]
-}
-
-model Foreignfield{
-  ForeignfieldId 
 }

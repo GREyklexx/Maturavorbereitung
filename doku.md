@@ -1,5 +1,52 @@
 # Hilfe
 
+## Node Basics
+
+### Commands
+
+```bash
+node name.js
+```
+
+execute a javascript file
+
+---
+
+```bash
+npm
+```
+
+npm ... Node Package Manager
+
+installieren von Packages
+
+gibt es ein package.json mit allen benötigten packages nur
+
+```bash
+npm i
+```
+
+wenn man ein bestimmtes Package installieren will
+
+```bash
+npm i Packagename
+```
+
+e.g.
+
+```bash
+npm i Prisma
+```
+
+---
+
+```bash
+npx
+```
+
+NPX dient dazu die Funktionen einzelner Node Packages zu eXecuten
+Das verwenden wir primär bei Prisma
+
 ## SQLite/Datenbanken
 
 Aufgabenstellung: Printable SQL Statements als Abgabe für die Aufgabenstellung
@@ -75,8 +122,16 @@ sqlite3
 
 Falls man in die unglückliche Situation kommt, das Schema File ändern zu müssen, kann folgendes helfen:
 
+Prisma Validate
+
 ```bash
 npx prisma validate
 ```
 
-Überprüfung/Validierung des
+Überprüfung/Validierung des Schemas. Keine Fehlermeldung -> Alles gut
+
+Sonstiges kann man mit Prisma Help nachlesen
+
+```bash
+npx prisma --help
+```

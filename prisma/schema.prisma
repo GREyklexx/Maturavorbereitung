@@ -11,18 +11,29 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 //this is a simple model with a field, datatype and 
 model simpleTable {
-field String @id
+  field String @id
 }
 
 model AnotherTable {
   id Int @id @default(autoincrement())
 }
 
-model Anothertable {
-  id Int @id
-optionalAttribute String?
+model Table2 {
+  id                Int     @id
+  optionalAttribute String?
+}
 
- }
+model Filiale {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  Regal Regal[]
+}
+
+model Regal {
+  id        Int     @id @default(autoincrement())
+  filiale   Filiale @relation(fields: [filialeId], references: [id])
+  filialeId Int
+}

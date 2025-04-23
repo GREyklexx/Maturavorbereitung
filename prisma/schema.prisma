@@ -12,8 +12,17 @@ datasource db {
 }
 
 
-model HelloWorld {
-  id Int @id @default(autoincrement())
-  field1 String
-  field2 String?
+//this is a simple model with a field, datatype and 
+model simpleTable {
+field String @id
 }
+
+model AnotherTable {
+  id Int @id @default(autoincrement())
+}
+
+model Anothertable {
+  id Int @id
+optionalAttribute String?
+
+ }

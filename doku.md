@@ -2,13 +2,13 @@
 
 ## Node Basics
 
-### Commands
+### Wichtige Befehle
 
 ```bash
 node name.js
 ```
 
-execute a javascript file
+Führt eine JavaScript-Datei aus.
 
 ---
 
@@ -16,26 +16,26 @@ execute a javascript file
 npm
 ```
 
-npm ... Node Package Manager
+**npm** steht für **Node Package Manager**. Damit lassen sich Abhängigkeiten und Pakete installieren.
 
-installieren von Packages
-
-gibt es ein package.json mit allen benötigten packages nur
+Wenn eine `package.json` vorhanden ist, reicht:
 
 ```bash
 npm i
 ```
 
-wenn man ein bestimmtes Package installieren will
+um alle dort aufgelisteten Pakete zu installieren.
+
+Ein einzelnes Paket installieren:
 
 ```bash
-npm i Packagename
+npm i <Paketname>
 ```
 
-e.g.
+Beispiel:
 
 ```bash
-npm i Prisma
+npm i prisma
 ```
 
 ---
@@ -44,69 +44,84 @@ npm i Prisma
 npx
 ```
 
-NPX dient dazu die Funktionen einzelner Node Packages zu eXecuten
-Das verwenden wir primär bei Prisma
+**npx** führt ein Node-Package direkt aus, ohne es dauerhaft zu installieren.
 
-## SQLite/Datenbanken
+Wir verwenden das häufig bei **Prisma**.
 
-Aufgabenstellung: Printable SQL Statements als Abgabe für die Aufgabenstellung
+---
 
-### Prisma
+## SQLite / Datenbanken
+
+### Aufgabenstellung
+
+Ziel: SQL-Dumps erzeugen, die in ein Word-Dokument eingefügt werden können.
+
+---
+
+### Prisma Setup
+
+Initialisierung von Prisma mit SQLite als Datenbank:
 
 ```bash
 npx prisma init --datasource-provider sqlite
 ```
 
-Erstellung des schema.prisma Files mit datasource provider Flag, damit SQLite als DB voreingestellt ist -> no meddling with the .env file!
+Dies erstellt die Datei `schema.prisma` mit SQLite als Standard-Datenbank.  
+👉 Kein Bearbeiten der `.env` nötig!
 
-#### Tools
+---
 
-VSCodeCommandLine
+#### Nützliche Tools
 
-> Format Document
+In **VSCode**:
 
-damit relations automatisch erstellt werden
+> **Format Document**
+
+Hilft beim automatischen Strukturieren und Erkennen von Relationen im Schema.
+
+**Beispiel für automatische Relationserkennung:**
 
 ```prisma
-
 model Filiale {
   id    Int     @id @default(autoincrement())
   name  String
-
 }
 
 model Regal {
-  id    Int     @id @default(autoincrement())
+  id     Int     @id @default(autoincrement())
   filiale Filiale
 }
-
 ```
 
-->
+wird zu:
 
-```Prisma
+```prisma
 model Filiale {
-  id   Int    @id @default(autoincrement())
-  name String
-
-  Regal Regal[]
+  id     Int     @id @default(autoincrement())
+  name   String
+  Regal  Regal[]
 }
 
 model Regal {
-  id        Int     @id @default(autoincrement())
-  filiale   Filiale @relation(fields: [filialeId], references: [id])
-  filialeId Int
+  id         Int     @id @default(autoincrement())
+  filiale    Filiale @relation(fields: [filialeId], references: [id])
+  filialeId  Int
 }
-
 ```
+
+---
+
+Datenbankmigration ausführen:
 
 ```bash
 npx prisma migrate dev
 ```
 
-Generierung der dev.db
+Erstellt die SQLite-Datei `dev.db` im Prisma-Ordner.
 
-### SQLite
+---
+
+### SQLite direkt verwenden
 
 ```bash
 sqlite3
@@ -114,24 +129,61 @@ sqlite3
 .dump
 ```
 
---> copy paste into wordfile
+→ Ausgabe kopieren und in ein Word-Dokument einfügen.
 
-### If something goes wrong
+---
 
-#### changing the schema.prisma
+### Fehlerbehebung
 
-Falls man in die unglückliche Situation kommt, das Schema File ändern zu müssen, kann folgendes helfen:
+#### Schema ändern
 
-Prisma Validate
+Wenn Änderungen am Schema nötig sind:
+
+**Validierung:**
 
 ```bash
 npx prisma validate
 ```
 
-Überprüfung/Validierung des Schemas. Keine Fehlermeldung -> Alles gut
+Keine Fehlermeldung = alles passt.
 
-Sonstiges kann man mit Prisma Help nachlesen
+Weitere Hilfe:
 
 ```bash
 npx prisma --help
 ```
+
+---
+
+# Algorithmen
+
+Hier findest du alles Wichtige zur Programmierung von Algorithmen in **JavaScript** oder **TypeScript**.
+
+---
+
+## Deno
+
+**Deno** ist eine moderne Laufzeitumgebung für JavaScript und TypeScript. Besonders praktisch zum schnellen Testen von Algorithmen.
+
+---
+
+### Deno initialisieren
+
+```bash
+deno init
+```
+
+Erstellt automatisch:
+
+- `main.ts`
+- `main_test.ts`
+
+Ausführung per:
+
+```bash
+deno run main.ts
+```
+
+💡 `.ts` kennzeichnet TypeScript-Dateien. Aber keine Sorge – du kannst auch ganz normale JavaScript-Syntax verwenden.
+
+---
